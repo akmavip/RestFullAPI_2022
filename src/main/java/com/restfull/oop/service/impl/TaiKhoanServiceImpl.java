@@ -38,7 +38,7 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     @Override
     public TaiKhoanVM getDetail(Long maTk) {
         Optional<TaiKhoan> taiKhoan = taiKhoanRepository.findById(maTk);
-        if(!taiKhoan.isPresent()){
+        if(!taiKhoan.isPresent() || taiKhoan.isEmpty()){
             throw new NotFoundException("Tài khoản không được tìm thấy");
         }
         return taiKhoanMapperVM.toDto(taiKhoan.get());
