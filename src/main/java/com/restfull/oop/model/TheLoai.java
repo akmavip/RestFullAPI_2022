@@ -9,7 +9,7 @@ public class TheLoai {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "maTL")
-    private int maTL;
+    private Long maTL;
 
     @Column(name = "tenTL")
     private String tenTL;

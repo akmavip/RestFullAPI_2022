@@ -2,6 +2,7 @@ package com.restfull.oop.model;
 import lombok.Data;
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "SanPham")
@@ -10,7 +11,7 @@ public class SanPham {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "maSP")
-    private int maSP;
+    private Long maSP;
 
     @Column(name = "tenSP")
     private String tenSP;
@@ -33,6 +34,9 @@ public class SanPham {
 
     @Column(name = "hinhAnh")
     private String hinhAnh;
+
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
+    List<CTSanPham> cTSanPhams;
 
     @Transient
     private CTSanPham detail;

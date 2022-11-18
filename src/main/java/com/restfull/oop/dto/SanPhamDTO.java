@@ -6,12 +6,26 @@ import java.sql.Date;
 
 @Data
 public class SanPhamDTO {
-    private int maSP;
+
+    private Long maSP;
+
     private String tenSP;
-    private int maTL;
-    private int tongSLTon;
+
+    private Long maTL;
+
     private int luotXem;
+
     private Date ngayTao;
+
     private Date ngayCapNhat;
+
     private String hinhAnh;
+
+    private int slTon;
+
+    private Long maSize;
+
+    private int gia;
+
+    private String mota;
 }

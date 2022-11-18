@@ -1,6 +1,12 @@
 package com.restfull.oop.vm;
 
-import com.restfull.oop.model.Quyen;
 
-public class QuyenVM extends Quyen {
+import lombok.Data;
+
+@Data
+public class QuyenVM {
+
+    private Long maQuyen;
+
+    private String tenQuyen;
 }
