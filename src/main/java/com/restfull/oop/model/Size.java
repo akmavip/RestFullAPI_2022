@@ -9,7 +9,7 @@ public class Size {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "maSize")
-    private int maSize;
+    private Long maSize;
 
     @Column(name = "tenSize")
     private String tenSize;

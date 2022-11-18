@@ -9,7 +9,7 @@ public class CTSanPham {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "maCT")
-    private int maCT;
+    private Long maCT;
 
     @ManyToOne
     @JoinColumn(name = "maSP")

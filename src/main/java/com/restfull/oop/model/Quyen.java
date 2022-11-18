@@ -1,6 +1,5 @@
 package com.restfull.oop.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,7 +18,6 @@ public class Quyen {
     @Column(name = "tenQuyen")
     private String tenQuyen;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "quyen", fetch = FetchType.EAGER)
     List<TaiKhoan> taiKhoans;
 }

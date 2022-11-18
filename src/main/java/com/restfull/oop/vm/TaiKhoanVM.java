@@ -1,6 +1,14 @@
 package com.restfull.oop.vm;
 
-import com.restfull.oop.model.TaiKhoan;
 
-public class TaiKhoanVM extends TaiKhoan {
+import lombok.Data;
+
+@Data
+public class TaiKhoanVM {
+
+    private Long maTK;
+
+    private String password;
+
+    private QuyenVM quyen;
 }

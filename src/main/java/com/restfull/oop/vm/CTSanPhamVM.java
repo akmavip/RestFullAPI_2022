@@ -1,6 +1,18 @@
 package com.restfull.oop.vm;
 
-import com.restfull.oop.model.CTSanPham;
+import com.restfull.oop.model.Size;
+import lombok.Data;
 
-public class CTSanPhamVM extends CTSanPham {
+@Data
+public class CTSanPhamVM {
+
+    private Long maCT;
+
+    private Size size;
+
+    private int gia;
+
+    private int slTon;
+
+    private String moTa;
 }
