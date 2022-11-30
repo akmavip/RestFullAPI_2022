@@ -8,8 +8,8 @@ import javax.persistence.*;
 public class CTSanPham {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "maCT")
-    private Long maCT;
+    @Column(name = "maCTSP")
+    private Long maCTSP;
 
     @ManyToOne
     @JoinColumn(name = "maSP")
