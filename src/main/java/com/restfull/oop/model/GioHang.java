@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "GioHang")
@@ -13,6 +14,9 @@ public class GioHang {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idGio")
     private Long idGio;
+
+    @OneToMany(mappedBy = "gioHang")
+    private List<CTGioHang> ctGioHangs;
 
     @ManyToOne
     @JoinColumn(name = "maKH")
@@ -45,6 +49,7 @@ public class GioHang {
     @ManyToOne
     @JoinColumn(name = "maNVGiao")
     private NhanVien nhanVien;
+
 
     public Long getIdGio() {
         return idGio;

@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class NhanVien {
     @Id
     @Column(name = "maNV")
-    private Long maNV;
+    private String maNV;
 
     @Column(name = "hoTen")
     private String hoTen;

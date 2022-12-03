@@ -15,8 +15,8 @@ public class GioHangController {
      private GioHangService gioHangService;
 
     @PostMapping("/cart")
-    public ResponseEntity<ResponseObject> create() {
-        return ResponseEntity.ok().body(new ResponseObject("ok", "success", gioHangService.create()));
+    public ResponseEntity<ResponseObject> create(@RequestBody GioHangDTO gioHangDTO) {
+        return ResponseEntity.ok().body(new ResponseObject("ok", "success", gioHangService.create(gioHangDTO)));
     }
 }
 

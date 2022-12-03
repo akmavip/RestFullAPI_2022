@@ -1,8 +1,10 @@
 package com.restfull.oop.dto;
 
+import com.restfull.oop.model.CTGioHang;
 import lombok.Data;
 
 import java.sql.Date;
+import java.util.List;
 
 @Data
 public class GioHangDTO {
@@ -28,4 +30,8 @@ public class GioHangDTO {
     private String maNVDuyet;
 
     private String maNVGiao;
+
+    private List<CTGioHang> cTGioHangs;
+
+
 }
