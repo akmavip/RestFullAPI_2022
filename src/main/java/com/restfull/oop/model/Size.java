@@ -1,5 +1,7 @@
 package com.restfull.oop.model;
+
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity

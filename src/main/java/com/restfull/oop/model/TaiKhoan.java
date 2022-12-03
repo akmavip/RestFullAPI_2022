@@ -1,13 +1,17 @@
 package com.restfull.oop.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
 @Table(name = "TaiKhoan")
-@Data
+//@Data
+@Getter
+@Setter
 public class TaiKhoan {
 
     @Id
@@ -21,4 +25,7 @@ public class TaiKhoan {
     @ManyToOne
     @JoinColumn(name = "maQuyen")
     private Quyen quyen;
+
+    @OneToMany(mappedBy = "taiKhoan", fetch = FetchType.EAGER)
+    List<NhanVien> nhanViens;
 }
