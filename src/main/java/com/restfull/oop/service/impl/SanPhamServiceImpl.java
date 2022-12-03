@@ -1,22 +1,18 @@
 package com.restfull.oop.service.impl;
 
 import com.restfull.oop.dto.SanPhamDTO;
-import com.restfull.oop.exception.DuplicateRecordException;
 import com.restfull.oop.exception.NotFoundException;
 import com.restfull.oop.mapper.CTSanPhamMapper;
 import com.restfull.oop.mapper.SanPhamMapper;
 import com.restfull.oop.model.CTSanPham;
 import com.restfull.oop.model.SanPham;
 import com.restfull.oop.model.Size;
-import com.restfull.oop.model.TaiKhoan;
 import com.restfull.oop.repository.CTSanPhamRepository;
 import com.restfull.oop.repository.SanPhamRepository;
 import com.restfull.oop.repository.SizeRepository;
 import com.restfull.oop.repository.TheLoaiRepository;
 import com.restfull.oop.service.SanPhamService;
-import com.restfull.oop.vm.CTSanPhamVM;
 import com.restfull.oop.vm.SanPhamVM;
-import com.restfull.oop.vm.TaiKhoanVM;
 import com.restfull.oop.vm.mapper.CTSanPhamMapperVM;
 import com.restfull.oop.vm.mapper.SanPhamMapperVM;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +54,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     @Override
     @Transactional(readOnly = true)
     public List<SanPhamVM> getAll() {
+        List<SanPham> sanPhams = sanPhamRepository.findAll();
         return sanPhamRepository.findAll().stream().map(sanPhamMapperVM::toDto).collect(Collectors.toList());
     }
 
@@ -123,6 +120,7 @@ public class SanPhamServiceImpl implements SanPhamService {
             ctSanPham.setGia(sanPhamDTO.getGia());
             ctSanPham.setSlTon(sanPhamDTO.getSlTon());
             ctSanPham.setMoTa(sanPhamDTO.getMota());
+            ctSanPhamRepository.save(ctSanPham);
 
             sanPhamVM = sanPhamMapperVM.toDto(sanPham);
             return sanPhamVM;
