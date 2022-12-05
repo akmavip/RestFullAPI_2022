@@ -35,14 +35,13 @@ public class KhuyenMaiController {
     public KhuyenMaiPayLoad create(@RequestBody KhuyenMaiPayLoad khuyenMaiPayLoad) {
 //        return ResponseEntity.ok().body(new ResponseObject("ok", "success", khuyenMaiService.create(khuyenMaiPayLoad)));
          return khuyenMaiService.create(khuyenMaiPayLoad);
-//        return 1;
     }
-//
-//
-//    @GetMapping("/hotProducts")
-//    public ResponseEntity<ResponseObject> getHostProducts() {
-//        return ResponseEntity.ok().body(new ResponseObject("ok", "success", sanPhamService.getHotProducts()));
-//    }
+
+    @PostMapping("/promotion/addProduct")
+    public KhuyenMaiPayLoad addProduct(@RequestBody KhuyenMaiPayLoad khuyenMaiPayLoad) {
+//        return ResponseEntity.ok().body(new ResponseObject("ok", "success", khuyenMaiService.create(khuyenMaiPayLoad)));
+        return khuyenMaiService.addProduct(khuyenMaiPayLoad);
+    }
 //
 //    @GetMapping("/productdetail/{id}")
 //    public ResponseEntity<ResponseObject> getDetail(@PathVariable Long id) {

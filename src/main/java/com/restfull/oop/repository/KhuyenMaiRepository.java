@@ -11,4 +11,5 @@ public interface KhuyenMaiRepository extends JpaRepository<KhuyenMai, Long> { //
     @Query("select max(km.maKM) as maKM from KhuyenMai km where km.maNV = :maNV")
     Long findNewestPromotion(@Param("maNV") String maNV);
 
+
 }

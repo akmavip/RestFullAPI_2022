@@ -11,5 +11,5 @@ public interface KhuyenMaiService {
     List<KhuyenMaiVM> getPromotion();
 
     KhuyenMaiPayLoad create(KhuyenMaiPayLoad khuyenMaiPayLoad);
-    KhuyenMaiVM update(KhuyenMaiDTO khuyenMaiDTO);
+    KhuyenMaiPayLoad addProduct(KhuyenMaiPayLoad khuyenMaiPayLoad);
 }
