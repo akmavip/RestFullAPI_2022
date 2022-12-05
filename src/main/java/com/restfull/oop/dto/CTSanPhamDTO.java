@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CTSanPhamDTO {
-    private int maCT;
+    private int maCTSP;
     private int maSP;
     private int maSize;
     private int gia;

@@ -1,10 +1,10 @@
-package com.restfull.oop.vm;
+package com.restfull.oop.payload;
 
 import com.restfull.oop.model.Size;
 import lombok.Data;
 
 @Data
-public class CTSanPhamVM {
+public class CTSanPhamPayLoad {
 
     private Long maCTSP;
 
