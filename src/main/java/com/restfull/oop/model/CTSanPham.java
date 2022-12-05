@@ -1,6 +1,7 @@
 package com.restfull.oop.model;
 import lombok.Data;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CT_SanPham")
@@ -10,6 +11,9 @@ public class CTSanPham {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "maCTSP")
     private Long maCTSP;
+
+    @OneToMany(mappedBy = "CTSanPham")
+    private List<CTGioHang> ctGioHangs;
 
     @ManyToOne
     @JoinColumn(name = "maSP")

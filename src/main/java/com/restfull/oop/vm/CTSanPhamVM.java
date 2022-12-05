@@ -1,5 +1,6 @@
 package com.restfull.oop.vm;
 
+import com.restfull.oop.model.CTSanPham;
 import com.restfull.oop.model.Size;
 import lombok.Data;
 

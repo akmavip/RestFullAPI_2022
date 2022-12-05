@@ -1,0 +1,37 @@
+package com.restfull.oop.dto;
+
+import com.restfull.oop.model.CTGioHang;
+import lombok.Data;
+
+import java.sql.Date;
+import java.util.List;
+
+@Data
+public class GioHangDTO {
+
+    private Long idGio;
+
+    private Long maKH;
+
+    private String hoTen;
+
+    private String sdt;
+
+    private String email;
+
+    private String diaChi;
+
+    private Date ngayTao;
+
+    private Date ngayGiao;
+
+    private int trangThai;
+
+    private String maNVDuyet;
+
+    private String maNVGiao;
+
+    private List<CTGioHang> cTGioHangs;
+
+
+}
