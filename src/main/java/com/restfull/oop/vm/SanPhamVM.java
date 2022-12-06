@@ -1,11 +1,8 @@
 package com.restfull.oop.vm;
 
-import com.restfull.oop.model.CTSanPham;
-import com.restfull.oop.model.SanPham;
 import com.restfull.oop.model.TheLoai;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 

@@ -1,10 +1,14 @@
 package com.restfull.oop.model;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "TheLoai")
-@Data
+//@Data
+@Getter
+@Setter
 public class TheLoai {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

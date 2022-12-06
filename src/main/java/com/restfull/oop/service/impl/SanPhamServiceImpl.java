@@ -1,25 +1,26 @@
 package com.restfull.oop.service.impl;
 
 import com.restfull.oop.dto.SanPhamDTO;
-import com.restfull.oop.exception.DuplicateRecordException;
+import com.restfull.oop.dto.SanPhamFilterDTO;
 import com.restfull.oop.exception.NotFoundException;
+import com.restfull.oop.exception.errors.BadRequestAlertException;
+import com.restfull.oop.exception.errors.ErrorEnum;
 import com.restfull.oop.mapper.CTSanPhamMapper;
 import com.restfull.oop.mapper.SanPhamMapper;
 import com.restfull.oop.model.CTSanPham;
 import com.restfull.oop.model.SanPham;
 import com.restfull.oop.model.Size;
-import com.restfull.oop.model.TaiKhoan;
 import com.restfull.oop.repository.CTSanPhamRepository;
 import com.restfull.oop.repository.SanPhamRepository;
 import com.restfull.oop.repository.SizeRepository;
 import com.restfull.oop.repository.TheLoaiRepository;
 import com.restfull.oop.service.SanPhamService;
-import com.restfull.oop.vm.CTSanPhamVM;
 import com.restfull.oop.vm.SanPhamVM;
-import com.restfull.oop.vm.TaiKhoanVM;
 import com.restfull.oop.vm.mapper.CTSanPhamMapperVM;
 import com.restfull.oop.vm.mapper.SanPhamMapperVM;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,8 +58,8 @@ public class SanPhamServiceImpl implements SanPhamService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<SanPhamVM> getAll() {
-        return sanPhamRepository.findAll().stream().map(sanPhamMapperVM::toDto).collect(Collectors.toList());
+    public List<SanPhamVM> getAll(SanPhamFilterDTO filters) {
+        return sanPhamRepository.findAllAndFilters(filters).stream().map(sanPhamMapperVM::toDto).collect(Collectors.toList());
     }
 
     @Override
@@ -67,14 +68,19 @@ public class SanPhamServiceImpl implements SanPhamService {
     }
 
     @Override
+    public List<SanPhamVM> getNewProducts() {
+        return sanPhamRepository.findTop8ByOrderByMaSPDesc().stream().map(sanPhamMapperVM::toDto).collect(Collectors.toList());
+    }
+
+    @Override
     public SanPhamVM getDetail(Long id) {
         Optional<SanPham> taiKhoan = sanPhamRepository.findById(id);
         if (!taiKhoan.isPresent() || taiKhoan.isEmpty()) {
-            throw new NotFoundException("Sản phẩm không được tìm thấy");
+            throw new BadRequestAlertException(ErrorEnum.PRODUCT_NOT_FOUND);
         }
         return sanPhamMapperVM.toDto(taiKhoan.get());
     }
-    //Lọc , lọc theo tên, lọc sp mới
+
     @Override
     public SanPhamVM create(SanPhamDTO sanPhamDTO) {
 
@@ -123,6 +129,7 @@ public class SanPhamServiceImpl implements SanPhamService {
             ctSanPham.setGia(sanPhamDTO.getGia());
             ctSanPham.setSlTon(sanPhamDTO.getSlTon());
             ctSanPham.setMoTa(sanPhamDTO.getMota());
+            ctSanPhamRepository.save(ctSanPham);
 
             sanPhamVM = sanPhamMapperVM.toDto(sanPham);
             return sanPhamVM;
@@ -133,7 +140,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     public void delete(Long maSP) {
         SanPham sanPham = sanPhamRepository.findById(maSP).get();
         if(sanPham.getCTSanPhams().size()> 0) {
-            new Exception("Sản phẩm chứa nhiều loại đang bán");
+            throw new BadRequestAlertException("TradingProduct", "Existed items", "The product contains many items on sale");
         }
         sanPhamRepository.delete(sanPham);
     }

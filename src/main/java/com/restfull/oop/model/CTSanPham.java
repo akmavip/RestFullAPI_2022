@@ -1,15 +1,20 @@
 package com.restfull.oop.model;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CT_SanPham")
-@Data
+//@Data
+@Getter
+@Setter
 public class CTSanPham {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "maCT")
-    private Long maCT;
+    @Column(name = "maCTSP")
+    private Long maCTSP;
 
     @ManyToOne
     @JoinColumn(name = "maSP")
@@ -18,6 +23,9 @@ public class CTSanPham {
     @ManyToOne
     @JoinColumn(name = "maSize")
     private Size size;
+
+    @OneToMany(mappedBy = "ctSanPham", fetch = FetchType.EAGER)
+    private List<CTKhuyenMai> ctKhuyenMais;
 
     @Column(name = "gia")
     private int gia;
