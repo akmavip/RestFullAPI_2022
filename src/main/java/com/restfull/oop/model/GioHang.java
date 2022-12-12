@@ -15,9 +15,6 @@ public class GioHang {
     @Column(name = "idGio")
     private Long idGio;
 
-    @OneToMany(mappedBy = "gioHang")
-    private List<CTGioHang> ctGioHangs;
-
     @ManyToOne
     @JoinColumn(name = "maKH")
     private KhachHang khachHang;
@@ -40,16 +37,28 @@ public class GioHang {
     @Column(name = "ngayGiao")
     private Date ngayGiao;
 
+    @Column(name = "moTa")
+    private String moTa;
+
     @Column(name = "trangThai")
     private int trangThai;
 
     @JoinColumn(name = "maNVDuyet")
     private String maNVDuyet;
 
-    @ManyToOne
-    @JoinColumn(name = "maNVGiao")
-    private NhanVien nhanVien;
+//    @ManyToOne
+    @Column(name = "maNVGiao")
+    private String maNVGiao;
 
+    @OneToMany(mappedBy = "gioHang", fetch = FetchType.EAGER)
+    List<CTGioHang> ctGioHangs;
+
+    @Transient
+    private CTGioHang detail;
+
+    public void setDetail(CTGioHang detail) {
+        this.detail = detail;
+    }
 
     public Long getIdGio() {
         return idGio;

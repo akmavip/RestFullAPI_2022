@@ -12,8 +12,8 @@ public class CTSanPham {
     @Column(name = "maCTSP")
     private Long maCTSP;
 
-    @OneToMany(mappedBy = "CTSanPham")
-    private List<CTGioHang> ctGioHangs;
+//    @OneToMany(mappedBy = "CTSanPham")
+//    private List<CTGioHang> ctGioHangs;
 
     @ManyToOne
     @JoinColumn(name = "maSP")

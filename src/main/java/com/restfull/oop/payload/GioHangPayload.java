@@ -1,4 +1,4 @@
-package com.restfull.oop.dto;
+package com.restfull.oop.payload;
 
 import com.restfull.oop.model.CTGioHang;
 import lombok.Data;
@@ -7,8 +7,7 @@ import java.sql.Date;
 import java.util.List;
 
 @Data
-public class GioHangDTO {
-
+public class GioHangPayload {
     private Long idGio;
 
     private Long maKH;
@@ -28,12 +27,11 @@ public class GioHangDTO {
     private int trangThai;
 
     private String moTa;
-
     private String maNVDuyet;
 
     private String maNVGiao;
 
-    private List<CTGioHang> cTGioHangs;
+    private List<CTGioHangPayLoad> arr;
 
 
 }

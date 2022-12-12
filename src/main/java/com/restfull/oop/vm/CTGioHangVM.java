@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 public class CTGioHangVM {
-    private Long idGio;
-    private CTSanPham CTSanPham;
+    private Long maCTSP;
     private int gia;
     private int soLuong;
 }

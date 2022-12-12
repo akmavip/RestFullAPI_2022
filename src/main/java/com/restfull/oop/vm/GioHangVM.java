@@ -3,6 +3,7 @@ package com.restfull.oop.vm;
 import lombok.Data;
 
 import java.sql.Date;
+import java.util.List;
 
 @Data
 public class GioHangVM {
@@ -22,9 +23,14 @@ public class GioHangVM {
 
     private Date ngayGiao;
 
+    private String moTa;
+
     private int trangThai;
 
     private String maNVDuyet;
 
     private String maNVGiao;
+
+    List<CTGioHangVM> ctGioHangs;
+
 }

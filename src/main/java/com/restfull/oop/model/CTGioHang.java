@@ -9,25 +9,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CT_GioHang")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@IdClass(CTGHId.class)
 public class CTGioHang {
     @Id
-    private Long idGio;
-
-    @Id
-    private Long maCTSP;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "maCTGH")
+    private Long maCTGH;
 
     @ManyToOne
-    @MapsId("idGio")
     @JoinColumn(name = "idGio")
     private GioHang gioHang;
 
-    @ManyToOne
-    @MapsId("maCTSP")
-    @JoinColumn(name = "maCTSP")
-    private CTSanPham CTSanPham;
+    @Column(name = "maCTSP")
+    private Long maCTSP;
 
     @Column(name = "gia")
     private int gia;
