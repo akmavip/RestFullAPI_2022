@@ -41,4 +41,5 @@ public class SanPham {
 
     @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     List<CTSanPham> cTSanPhams;
+
 }

@@ -35,7 +35,7 @@ public class SanPhamController {
 
 
     @GetMapping("/hotProducts")
-    public ResponseEntity<ResponseObject> getHostProducts() {
+    public ResponseEntity<ResponseObject> getHotProducts() {
         return ResponseEntity.ok().body(new ResponseObject("ok", "success", sanPhamService.getHotProducts()));
     }
 
