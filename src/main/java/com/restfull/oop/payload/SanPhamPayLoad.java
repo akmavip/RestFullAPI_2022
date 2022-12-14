@@ -28,5 +28,5 @@ public class SanPhamPayLoad {
 
     private String hinhAnh;
 
-    List<CTSanPhamPayLoad> detail;
+    List<CTSanPhamPayLoad> ctsanPhams;
 }

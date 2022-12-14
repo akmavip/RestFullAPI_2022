@@ -51,9 +51,9 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
         KMtest.setMaKM(khuyenMaiRepository.findNewestPromotion(maNV));
         List <SanPhamPayLoad> dssp = khuyenMaiPayLoad.getDssp();
         for (int i = 0; i < dssp.size(); i++) {
-            for (int j = 0; j < dssp.get(i).getDetail().size(); j++) {
+            for (int j = 0; j < dssp.get(i).getCtsanPhams().size(); j++) {
                 CTKhuyenMai ctKhuyenMai = new CTKhuyenMai();
-                ctKhuyenMai.setMaCTSP(dssp.get(i).getDetail().get(j).getMaCTSP());
+                ctKhuyenMai.setMaCTSP(dssp.get(i).getCtsanPhams().get(j).getMaCTSP());
                 ctKhuyenMai.setPhanTramGiam(phanTramGiam);
                 ctKhuyenMai.setKhuyenMai(KMtest);
                 ctKhuyenMaiRepository.save(ctKhuyenMai);
@@ -73,10 +73,10 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
 
         List <SanPhamPayLoad> dssp = khuyenMaiPayLoad.getDssp();
         for (int i = 0; i < dssp.size(); i++) {
-            for (int j = 0; j < dssp.get(i).getDetail().size(); j++) {
+            for (int j = 0; j < dssp.get(i).getCtsanPhams().size(); j++) {
 
                 CTKhuyenMai ctKhuyenMai = new CTKhuyenMai();
-                ctKhuyenMai.setMaCTSP(dssp.get(i).getDetail().get(j).getMaCTSP());
+                ctKhuyenMai.setMaCTSP(dssp.get(i).getCtsanPhams().get(j).getMaCTSP());
                 ctKhuyenMai.setPhanTramGiam(phanTramGiam);
                 ctKhuyenMai.setKhuyenMai(KMtest);
                 ctKhuyenMaiRepository.save(ctKhuyenMai);
