@@ -17,26 +17,31 @@ public class TaiKhoanController {
     private TaiKhoanService taiKhoanService;
 
     @GetMapping("/taiKhoan")
+    @CrossOrigin
     public ResponseEntity<List<TaiKhoanVM>> getList() {
         return ResponseEntity.ok(taiKhoanService.getList());
     }
 
     @GetMapping("/taiKhoan/{id}")
+    @CrossOrigin
     public ResponseEntity<TaiKhoanVM> getDetailTK(@PathVariable Long id) {
         return ResponseEntity.ok(taiKhoanService.getDetail(id));
     }
 
     @PostMapping("/taiKhoan")
+    @CrossOrigin
     public ResponseEntity<TaiKhoanVM> create(@RequestBody TaiKhoanDTO taiKhoanDTO){
         return ResponseEntity.ok(taiKhoanService.create(taiKhoanDTO));
     }
 
     @PutMapping("/taiKhoan")
+    @CrossOrigin
     public ResponseEntity<TaiKhoanVM> update(@RequestBody TaiKhoanDTO taiKhoanDTO){
         return ResponseEntity.ok(taiKhoanService.update(taiKhoanDTO));
     }
 
     @DeleteMapping("/taiKhoan/{id}")
+    @CrossOrigin
     public void delete(@PathVariable Long id){
         taiKhoanService.delete(id);
     }

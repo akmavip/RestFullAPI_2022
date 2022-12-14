@@ -17,6 +17,7 @@ public class SanPhamController {
     private SanPhamService sanPhamService;
 
     @GetMapping("/products")
+    @CrossOrigin
     public ResponseEntity<ResponseObject> getList() {
         List<SanPhamVM> listSanPham = sanPhamService.getAll();
 
@@ -29,17 +30,20 @@ public class SanPhamController {
 
     //Lọc sản phẩm, lọc theo tên, lấy sản phẩm mới, thêm xoá sửa
     @PostMapping("/products")
+    @CrossOrigin
     public ResponseEntity<ResponseObject> create(@RequestBody SanPhamDTO sanPhamDTO) {
         return ResponseEntity.ok().body(new ResponseObject("ok", "success", sanPhamService.create(sanPhamDTO)));
     }
 
 
     @GetMapping("/hotProducts")
+    @CrossOrigin
     public ResponseEntity<ResponseObject> getHostProducts() {
         return ResponseEntity.ok().body(new ResponseObject("ok", "success", sanPhamService.getHotProducts()));
     }
 
     @GetMapping("/productdetail/{id}")
+    @CrossOrigin
     public ResponseEntity<ResponseObject> getDetail(@PathVariable Long id) {
         return ResponseEntity.ok().body(new ResponseObject("ok", "success", sanPhamService.getDetail(id)));
     }

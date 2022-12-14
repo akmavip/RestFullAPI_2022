@@ -82,22 +82,20 @@ public class GioHangServiceImpl implements GioHangService {
         gioHangnew.setIdGio(gioHangRepository.findNewestCart(khachHangNew));
 
         List <CTGioHangPayLoad> arr = gioHangPayload.getArr();
-        for (int i = 0; i < arr.size(); i++) {
             for (int j = 0; j < arr.size(); j++) {
 
                 CTSanPham ctSanPham = new CTSanPham();
-                ctSanPham.setMaCTSP(arr.get(i).getMaCTSP());
+                ctSanPham.setMaCTSP(arr.get(j).getMaCTSP());
 
 
                 CTGioHang ctGioHang = new CTGioHang();
-                ctGioHang.setMaCTSP(arr.get(i).getMaCTSP());
-                ctGioHang.setGia(arr.get(i).getGia());
-                ctGioHang.setSoLuong(arr.get(i).getSoLuong());
+                ctGioHang.setMaCTSP(arr.get(j).getMaCTSP());
+                ctGioHang.setGia(arr.get(j).getGia());
+                ctGioHang.setSoLuong(arr.get(j).getSoLuong());
                 ctGioHang.setGioHang(gioHangnew);
                 System.out.println("ct gh " + ctGioHang);
                 ctGioHangRepository.save(ctGioHang);
             }
-        }
 
         gioHangRepository.save(gioHang);
 

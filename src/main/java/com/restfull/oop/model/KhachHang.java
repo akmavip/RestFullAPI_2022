@@ -12,9 +12,8 @@ public class KhachHang {
     @Column(name = "maKH")
     private Long maKH;
 
-    @ManyToOne
-    @JoinColumn(name = "maTK")
-    private TaiKhoan taiKhoan;
+    @Column(name = "maTK")
+    private Long maTK;
 
     @Column(name = "hoTen")
     private String hoTen;
@@ -30,4 +29,5 @@ public class KhachHang {
 
     @Column(name = "maSoThue")
     private String maSoThue;
+
 }

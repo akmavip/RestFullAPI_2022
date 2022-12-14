@@ -1,6 +1,7 @@
 package com.restfull.oop.vm;
 
 
+import com.restfull.oop.model.Quyen;
 import lombok.Data;
 
 @Data
@@ -10,5 +11,5 @@ public class TaiKhoanVM {
 
     private String password;
 
-    private QuyenVM quyen;
+    private Quyen Quyen;
 }

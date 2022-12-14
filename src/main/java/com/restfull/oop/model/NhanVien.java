@@ -27,8 +27,7 @@ public class NhanVien {
     @Column(name = "cmnd")
     private String cmnd;
 
-    @ManyToOne
-    @JoinColumn(name = "maTK")
-    private TaiKhoan taiKhoan;
+    @Column(name = "maTK")
+    private Long maTK;
 
 }

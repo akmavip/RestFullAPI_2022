@@ -7,19 +7,18 @@ import com.restfull.oop.vm.KhuyenMaiVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class KhuyenMaiController {
     @Autowired
     private KhuyenMaiService khuyenMaiService;
 
     @GetMapping("/promotion")
+    @CrossOrigin
     public ResponseEntity<ResponseObject> getList() {
         List<KhuyenMaiVM> listKhuyenMai = khuyenMaiService.getPromotion();
 
@@ -32,12 +31,14 @@ public class KhuyenMaiController {
 
     //Lọc sản phẩm, lọc theo tên, lấy sản phẩm mới, thêm xoá sửa
     @PostMapping("/promotion/create")
+    @CrossOrigin
     public KhuyenMaiPayLoad create(@RequestBody KhuyenMaiPayLoad khuyenMaiPayLoad) {
 //        return ResponseEntity.ok().body(new ResponseObject("ok", "success", khuyenMaiService.create(khuyenMaiPayLoad)));
          return khuyenMaiService.create(khuyenMaiPayLoad);
     }
 
     @PostMapping("/promotion/addProduct")
+    @CrossOrigin
     public KhuyenMaiPayLoad addProduct(@RequestBody KhuyenMaiPayLoad khuyenMaiPayLoad) {
 //        return ResponseEntity.ok().body(new ResponseObject("ok", "success", khuyenMaiService.create(khuyenMaiPayLoad)));
         return khuyenMaiService.addProduct(khuyenMaiPayLoad);

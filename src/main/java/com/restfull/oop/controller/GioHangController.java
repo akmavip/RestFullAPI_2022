@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class GioHangController {
     @Autowired
      private GioHangService gioHangService;
 
 
-    @GetMapping("/cart")
+    @GetMapping("/admin/cart")
+    @CrossOrigin
     public ResponseEntity<ResponseObject> getList() {
         List<GioHangVM> listKhuyenMai = gioHangService.getCart();
 
@@ -31,6 +33,7 @@ public class GioHangController {
     }
 
     @GetMapping("/cart/{maKH}")
+    @CrossOrigin
     public ResponseEntity<ResponseObject> getCartByMaKH(@PathVariable("maKH") long maKH) {
         List<GioHangVM> ListGioHang = gioHangService.getCartByMaKH(maKH);
 
@@ -44,12 +47,14 @@ public class GioHangController {
 
 
     @PostMapping("/cart")
+    @CrossOrigin
     public GioHangPayload create(@RequestBody GioHangPayload gioHangPayload) {
 //        return ResponseEntity.ok().body(new ResponseObject("ok", "success", gioHangService.create(gioHangDTO)));
         return gioHangService.create(gioHangPayload);
     }
 
     @PostMapping("/cart/update")
+    @CrossOrigin
     public GioHangPayload update(@RequestBody GioHangPayload gioHangPayload) {
 //        return ResponseEntity.ok().body(new ResponseObject("ok", "success", gioHangService.create(gioHangDTO)));
         return gioHangService.update(gioHangPayload);
