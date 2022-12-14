@@ -1,6 +1,7 @@
 package com.restfull.oop.controller;
 
 import com.restfull.oop.dto.SanPhamDTO;
+import com.restfull.oop.dto.SanPhamFilterDTO;
 import com.restfull.oop.model.ResponseObject;
 import com.restfull.oop.service.SanPhamService;
 import com.restfull.oop.vm.SanPhamVM;
@@ -18,8 +19,8 @@ public class SanPhamController {
 
     @GetMapping("/products")
     @CrossOrigin
-    public ResponseEntity<ResponseObject> getList() {
-        List<SanPhamVM> listSanPham = sanPhamService.getAll();
+    public ResponseEntity<ResponseObject> getList(SanPhamFilterDTO filters) {
+        List<SanPhamVM> listSanPham = sanPhamService.getAll(filters);
 
         if (!listSanPham.isEmpty()) {
             return ResponseEntity.ok().body(new ResponseObject("ok", "success", listSanPham));

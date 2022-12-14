@@ -1,8 +1,11 @@
 package com.restfull.oop.service.impl;
 
 import com.restfull.oop.dto.SanPhamDTO;
+import com.restfull.oop.dto.SanPhamFilterDTO;
 import com.restfull.oop.exception.DuplicateRecordException;
 import com.restfull.oop.exception.NotFoundException;
+import com.restfull.oop.exception.errors.BadRequestAlertException;
+import com.restfull.oop.exception.errors.ErrorEnum;
 import com.restfull.oop.mapper.CTSanPhamMapper;
 import com.restfull.oop.mapper.SanPhamMapper;
 import com.restfull.oop.model.CTSanPham;
@@ -57,8 +60,8 @@ public class SanPhamServiceImpl implements SanPhamService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<SanPhamVM> getAll() {
-        return sanPhamRepository.findAll().stream().map(sanPhamMapperVM::toDto).collect(Collectors.toList());
+    public List<SanPhamVM> getAll(SanPhamFilterDTO filters) {
+        return sanPhamRepository.findAllAndFilters(filters).stream().map(sanPhamMapperVM::toDto).collect(Collectors.toList());
     }
 
     @Override
@@ -70,7 +73,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     public SanPhamVM getDetail(Long id) {
         Optional<SanPham> taiKhoan = sanPhamRepository.findById(id);
         if (!taiKhoan.isPresent() || taiKhoan.isEmpty()) {
-            throw new NotFoundException("Sản phẩm không được tìm thấy");
+            throw new BadRequestAlertException(ErrorEnum.PRODUCT_NOT_FOUND);
         }
         return sanPhamMapperVM.toDto(taiKhoan.get());
     }
@@ -133,7 +136,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     public void delete(Long maSP) {
         SanPham sanPham = sanPhamRepository.findById(maSP).get();
         if(sanPham.getCTSanPhams().size()> 0) {
-            new Exception("Sản phẩm chứa nhiều loại đang bán");
+            throw new BadRequestAlertException("TradingProduct", "Existed items", "The product contains many items on sale");
         }
         sanPhamRepository.delete(sanPham);
     }
