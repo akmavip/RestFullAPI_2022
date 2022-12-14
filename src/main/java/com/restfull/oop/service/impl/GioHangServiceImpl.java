@@ -7,10 +7,7 @@ import com.restfull.oop.model.*;
 import com.restfull.oop.payload.CTGioHangPayLoad;
 import com.restfull.oop.payload.GioHangPayload;
 import com.restfull.oop.payload.SanPhamPayLoad;
-import com.restfull.oop.repository.CTGioHangRepository;
-import com.restfull.oop.repository.GioHangRepository;
-import com.restfull.oop.repository.KhachHangRepository;
-import com.restfull.oop.repository.NhanVienRepository;
+import com.restfull.oop.repository.*;
 import com.restfull.oop.service.GioHangService;
 import com.restfull.oop.vm.GioHangVM;
 import com.restfull.oop.vm.KhuyenMaiVM;
@@ -43,7 +40,7 @@ public class GioHangServiceImpl implements GioHangService {
     private GioHangMapperVM gioHangMapperVM;
 
     @Autowired
-    private CTGioHangMapper ctGioHangMapper;
+    private CTSanPhamRepository ctSanPhamRepository;
 
     @Override
     public List<GioHangVM> getCart() {
@@ -84,17 +81,23 @@ public class GioHangServiceImpl implements GioHangService {
         List <CTGioHangPayLoad> arr = gioHangPayload.getArr();
             for (int j = 0; j < arr.size(); j++) {
 
-                CTSanPham ctSanPham = new CTSanPham();
-                ctSanPham.setMaCTSP(arr.get(j).getMaCTSP());
-
 
                 CTGioHang ctGioHang = new CTGioHang();
                 ctGioHang.setMaCTSP(arr.get(j).getMaCTSP());
                 ctGioHang.setGia(arr.get(j).getGia());
                 ctGioHang.setSoLuong(arr.get(j).getSoLuong());
                 ctGioHang.setGioHang(gioHangnew);
-                System.out.println("ct gh " + ctGioHang);
                 ctGioHangRepository.save(ctGioHang);
+
+                CTSanPham ctSanPham = ctSanPhamRepository.findCTSanPhamByMaCTSP(arr.get(j).getMaCTSP());
+
+//                ctSanPham.setMaCTSP(arr.get(j).getMaCTSP());
+                int slt = ctSanPham.getSlTon() - arr.get(j).getSoLuong();
+                System.out.println("slt" + slt);
+                ctSanPham.setSlTon( slt);
+//                System.out.println("ct " + ctSanPham.getSanPham() + ' ' + ctSanPham.getSlTon());
+                ctSanPhamRepository.save(ctSanPham);
+
             }
 
         gioHangRepository.save(gioHang);
